@@ -1,27 +1,17 @@
-import {productImages} from '../js/index_array';
+import { productImages } from "../js/index_array.js";
 
 var gridContainer = document.getElementById('grid_container');
 
-    function displayCards(){
-        productImages.forEach((product) => {
 
-        var menuCard = document.createElement('div');
-        var menuContent = document.createElement('div');
-        var menuImage = document.createElement('img');
-        var menuTitle = document.createElement('p');
-        
-        menuCard.className = 'card';
-        menuTitle.className = 'label';
-        menuTitle.style.fontSize = '200';
 
-        menuImage.src = meal.image;
-        menuTitle = meal.title;
-        menuContent.append(menuImage);
-        menuContent.append(menuTitle);
-        menuCard.append(menuContent);
-        gridContainer.append(menuCard);
-
-        });
-    };
-
-    document.addEventListener('DOMContentLoaded', displayCards());
+document.addEventListener('DOMContentLoaded', () => {
+    productImages.forEach(product =>{
+        gridContainer.innerHTML += `<div class="card">
+                <img class="card_image" src="${product.image}">
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <h4>${product.price}</h4>
+                <button class="card_button">Add to Cart</button>
+            </div>`
+    })
+});
