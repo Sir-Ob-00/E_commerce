@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function addToCart(product, price) {
     const cart = document.getElementById('cart');
     const listItem = document.createElement('li');
-    listItem.textContent = `${product} - $${price}`;
+    listItem.textContent = `${product} - GH₵${price}`;
     
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
