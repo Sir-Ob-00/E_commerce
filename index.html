@@ -1,28 +1,56 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E_commerce</title>
-    <link href="/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="header-items">
-            <p>Home</p>
-            <div>
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="zero-text">0</span>
-            </div>
-        </div>  
-    </header>
+    <nav>
+        <h1>Home</h1>
+        <div class="cart" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </nav>
+
 
     <main>
         <h2 class="keyboard-text">MUSICAL KEYBOARD</h2>
-        <div class="grid_container" id="grid_container">
+        <div class="grid_container">
+            <div class="product">
+                <img src="/images/sx900 full.jpg">
+                <h2>YAMAHA PSRSX900</h2>
+                <p>The top-of-the-line in the PSR-SX Series, the PSR-SX900 delivers the best and most available in its class of Arranger Workstations today.</p>
+                <h4>$10</h4>
+                <button onclick="addToCart('YAMAHA PSRSX900', 10)"></i> Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/Genos 2 full.webp">
+                <h2>YAMAHA GENOS 2</h2>
+                <p>For the music enthusiast and solo performer, we present the new GENOS 2: a game changer in Arranger Workstations.</p>
+                <h4>$20</h4>
+                <button onclick="addToCart('YAMAHA GENOS 2', 20)"></i> Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/Yamaha-keyboard-E473.webp">
+                <h2>YAMAHA PSRE473</h2>
+                <p>The touch-sensitive keyboard and powerful sound engine of the PSR-E473 bring together superb sound and great feel in an all-new portable instrument.</p>
+                <h4>$30</h4>
+                <button onclick="addToCart('YAMAHA PSRE473', 30)"></i> Add to Cart</button>
+            </div>
         </div>
     </main>
 
-    <script type="module" src="/js/index.js"></script>
+    <div class="cart-pane" id="cart-pane">
+        <h2>Cart</h2>
+        <ul id="cart"></ul>
+        <h3>Total: $<span id="total">0</span></h3>
+    </div>
 
+
+    <script src="index.js"></script>
 </body>
 </html>
