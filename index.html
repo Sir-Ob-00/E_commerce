@@ -18,28 +18,75 @@
 
 
     <main>
-        <h2 class="keyboard-text">MUSICAL KEYBOARD</h2>
-        <div class="grid_container">
-            <div class="product">
-                <img src="/images/sx900 full.jpg">
-                <h2>YAMAHA PSRSX900</h2>
-                <p>The top-of-the-line in the PSR-SX Series, the PSR-SX900 delivers the best and most available in its class of Arranger Workstations today.</p>
-                <h4>GH₵25,000</h4>
-                <button onclick="addToCart('YAMAHA PSRSX900', 25000)"></i> Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="/images/Genos 2 full.webp">
-                <h2>YAMAHA GENOS 2</h2>
-                <p>For the music enthusiast and solo performer, we present the new GENOS 2: a game changer in Arranger Workstations.</p>
-                <h4>GH₵45,000</h4>
-                <button onclick="addToCart('YAMAHA GENOS 2', 45000)"></i> Add to Cart</button>
-            </div>
-            <div class="product">
+        <div class="title-text">
+            <h2>MUSICAL KEYBOARD</h2>
+            <input class="input-search" type="text" id="searchBar" placeholder="Search products..." onkeyup="filterProducts()">
+        </div>
+
+        <div class="grid_container" id="productGrid">
+            <div class="product" data-name="YAMAHA PSRE473" data-image='["/images/PSR-E473_Sub.webp", "/images/PSR-E473.jpg", "/images/PSR-E473-b.jpg"]' data-description="The touch-sensitive keyboard and powerful sound engine of the PSR-E473 bring together superb sound and great feel in an all-new portable instrument." data-price="6500">
                 <img src="/images/Yamaha-keyboard-E473.webp">
                 <h2>YAMAHA PSRE473</h2>
                 <p>The touch-sensitive keyboard and powerful sound engine of the PSR-E473 bring together superb sound and great feel in an all-new portable instrument.</p>
                 <h4>GH₵6,500</h4>
-                <button onclick="addToCart('YAMAHA PSRE473', 6500)"></i> Add to Cart</button>
+                <div class="product-buttons">
+                    <button onclick="addToCart('YAMAHA PSRE473', 6500)"></i> Add to Cart</button>
+                    <button class="view-details">View More Details</button>
+                </div>
+            </div>
+            <div class="product" data-name="YAMAHA PSRSX900" data-image='["/images/sx900 touch.jpg", "/images/sx900 rear.webp", "/images/sx900 nob.jpeg"]' data-description="The top-of-the-line in the PSR-SX Series, the PSR-SX900 delivers the best and most available in its class of Arranger Workstations today." data-price="25000">
+                <img src="/images/sx900 full.jpg">
+                <h2>YAMAHA PSRSX900</h2>
+                <p>The top-of-the-line in the PSR-SX Series, the PSR-SX900 delivers the best and most available in its class of Arranger Workstations today.</p>
+                <h4>GH₵25,000</h4>
+                <div class="product-buttons">
+                    <button onclick="addToCart('YAMAHA PSRSX900', 25000)"></i> Add to Cart</button>
+                    <button class="view-details">View More Details</button>
+                </div>
+                
+            </div>
+            <div class="product" data-name="YAMAHA GENOS" data-image='["/images/genos-rear.jpg", "/images/genos 2 touch.jpg", "/images/sx900 nob.jpeg"]' data-description="The top-of-the-line in the PSR-SX Series, the PSR-SX900 delivers the best and most available in its class of Arranger Workstations today." data-price="30000">
+                <img src="/images/yamaha genos.jpg">
+                <h2>YAMAHA GENOS</h2>
+                <p>For the music enthusiast and solo performer, we present the new GENOS 2: a game changer in Arranger Workstations.</p>
+                <h4>GH₵30,000</h4>
+                <div class="product-buttons">
+                    <button onclick="addToCart('YAMAHA PSRE473', 3000)"></i> Add to Cart</button>
+                    <button class="view-details">View More Details</button>
+                </div>
+            </div>
+            <div class="product" data-name="YAMAHA GENOS2" data-image='["/images/genos 2 touch.jpg", "/images/genos 2 side.webp", "/images/genos 2 equa.jpeg"]' data-description="The top-of-the-line in the PSR-SX Series, the PSR-SX900 delivers the best and most available in its class of Arranger Workstations today." data-price="45000">
+                <img src="/images/genos2 f.jpg">
+                <h2>YAMAHA GENOS 2</h2>
+                <p>For the music enthusiast and solo performer, we present the new GENOS 2: a game changer in Arranger Workstations.</p>
+                <h4>GH₵45,000</h4>
+                <div class="product-buttons">
+                    <button onclick="addToCart('YAMAHA GENOS 2', 45000)"></i> Add to Cart</button>
+                    <button class="view-details">View More Details</button>
+                </div>
+            </div>
+            
+            <div class="product" data-name="YAMAHA MODX 8" data-image='["/images/yamaha modx 6.jpg", "/images/yamaha modx 8.jpg", "/images/yamaha-modx6-6.jpg"]' data-description="The top-of-the-line in the PSR-SX Series, the PSR-SX900 delivers the best and most available in its class of Arranger Workstations today." data-price="65000">
+                <img src="/images/yamaha modx 8.jpg">
+                <h2>YAMAHA MODX 8</h2>
+                <p>The touch-sensitive keyboard and powerful sound engine of the MODX 8 bring together superb sound and great feel in an all-new portable instrument.</p>
+                <h4>GH₵65,000</h4>
+                <div class="product-buttons">
+                    <button onclick="addToCart('YAMAHA PSRE473', 65000)"></i> Add to Cart</button>
+                    <button class="view-details">View More Details</button>
+                </div>
+                
+            </div>
+            <div class="product" data-name="YAMAHA MONTAGE 8" data-image='["/images/yamaha motage 7.jpg", "/images/yamaha montage 8.jpg", "/images/yamaha montage 6.jpg' data-description="The top-of-the-line in the PSR-SX Series, the PSR-SX900 delivers the best and most available in its class of Arranger Workstations today." data-price="80000">
+                <img src="/images/yamaha montage 8.jpg">
+                <h2>YAMAHA MONTAGE 8</h2>
+                <p>The touch-sensitive keyboard and powerful sound engine of the MONTAGE 8 bring together superb sound and great feel in an all-new portable instrument.</p>
+                <h4>GH₵80,000</h4>
+                <div class="product-buttons">
+                    <button onclick="addToCart('YAMAHA PSRE473', 80000)"></i> Add to Cart</button>
+                    <button class="view-details">View More Details</button>
+                </div>
+                
             </div>
         </div>
     </main>
@@ -48,6 +95,32 @@
         <h2>Cart</h2>
         <ul id="cart"></ul>
         <h3>Total: GH₵<span id="total">0</span></h3>
+        <button class="removeAll" onclick="removeAll()">Remove All</button>
+    </div>
+
+    <div class="popup" id="popup"> 
+        <div class="checkmark">✔</div> 
+        <p id="popupMessage"></p> 
+        <button onclick="closePopup()">Close</button> 
+    </div>
+
+    <!-- Modal --> 
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div> 
+    <div class="modal" id="product-modal"> 
+        <div class="modal-content"> 
+            <div id="modal-images" class="slider">
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button> 
+                <div class="slides-container"></div> 
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div> 
+            <h2 id="modal-title"></h2> 
+            <p id="modal-description"></p> 
+            <h4 id="modal-price"></h4> 
+            <div class="modal-buttons">
+                <button onclick="addToCart()" id="modal-add-to-cart">Add to Cart</button>
+                <button onclick="closeModal()">Close</button> 
+            </div>
+        </div> 
     </div>
 
 
