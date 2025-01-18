@@ -162,65 +162,65 @@ var modal = document.getElementById("product-modal");
 var modalOverlay = document.getElementById("modal-overlay");
 var slideIndex = 0;
 
-// Function to show modal with product details
-function showModal(productName, productDescription, productPrice, productImages) {
-  // Populate modal content
-  document.getElementById("modal-title").innerText = productName;
-  document.getElementById("modal-description").innerText = productDescription;
-  document.getElementById("modal-price").innerText = "GH₵" + productPrice;
+    // Function to show modal with product details
+    function showModal(productName, productDescription, productPrice, productImages) {
+    // Populate modal content
+    document.getElementById("modal-title").innerText = productName;
+    document.getElementById("modal-description").innerText = productDescription;
+    document.getElementById("modal-price").innerText = "GH₵" + productPrice;
 
-  // Clear existing images
-  var modalImagesDiv = document.getElementById("modal-images");
-  modalImagesDiv.innerHTML = "";
+    // Clear existing images
+    var modalImagesDiv = document.getElementById("modal-images");
+    modalImagesDiv.innerHTML = "";
 
-  // Add product images to modal
-  productImages.forEach(image => {
-    var imgElement = document.createElement("img");
-    imgElement.src = image;
-    modalImagesDiv.appendChild(imgElement);
-  });
+    // Add product images to modal
+    productImages.forEach(image => {
+        var imgElement = document.createElement("img");
+        imgElement.src = image;
+        modalImagesDiv.appendChild(imgElement);
+    });
 
-  // Display modal and overlay
-  modal.style.display = "block";
-  modalOverlay.style.display = "block";
-}
+    // Display modal and overlay
+    modal.style.display = "block";
+    modalOverlay.style.display = "block";
+    }
 
-// Function to close modal
-function closeModal() {
-  modal.style.display = "none";
-  modalOverlay.style.display = "none";
-}
+    // Function to close modal
+    function closeModal() {
+    modal.style.display = "none";
+    modalOverlay.style.display = "none";
+    }
 
-// Function to change slide 
-function changeSlide(n) { 
-    var slides = document.getElementsByClassName("slide"); slideIndex += n; 
-    if (slideIndex >= slides.length) { 
-        slideIndex = 0; 
-    } 
-    if (slideIndex < 0) { 
-        slideIndex = slides.length - 1; 
-    } 
-    for (var i = 0; i < slides.length; i++) { 
-        slides[i].style.display = "none"; 
-    } 
-    slides[slideIndex].style.display = "block"; 
-}
+    // Function to change slide 
+    function changeSlide(n) { 
+        var slides = document.getElementsByClassName("slide"); slideIndex += n; 
+        if (slideIndex >= slides.length) { 
+            slideIndex = 0; 
+        } 
+        if (slideIndex < 0) { 
+            slideIndex = slides.length - 1; 
+        } 
+        for (var i = 0; i < slides.length; i++) { 
+            slides[i].style.display = "none"; 
+        } 
+        slides[slideIndex].style.display = "block"; 
+    }
 
-// Attach event listeners to "View More Details" buttons
-document.querySelectorAll('.view-details').forEach(button => {
-  button.addEventListener('click', function () {
-    var product = this.closest('.product');
-    var productName = product.getAttribute('data-name');
-    var productDescription = product.getAttribute('data-description');
-    var productPrice = product.getAttribute('data-price');
-    var productImages = JSON.parse(product.getAttribute('data-image'));
+    // Attach event listeners to "View More Details" buttons
+    document.querySelectorAll('.view-details').forEach(button => {
+    button.addEventListener('click', function () {
+        var product = this.closest('.product');
+        var productName = product.getAttribute('data-name');
+        var productDescription = product.getAttribute('data-description');
+        var productPrice = product.getAttribute('data-price');
+        var productImages = JSON.parse(product.getAttribute('data-image'));
 
-    showModal(productName, productDescription, productPrice, productImages);
-  });
-});
+        showModal(productName, productDescription, productPrice, productImages);
+    });
+    });
 
-// Close modal when clicking outside of it
-modalOverlay.onclick = closeModal;
+    // Close modal when clicking outside of it
+    modalOverlay.onclick = closeModal;
 
 
 
