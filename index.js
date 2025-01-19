@@ -37,12 +37,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function addToCart(product, price) {
-    // Check if the product is already in the cart
     if (cartItems[product]) {
-        // If product is already in the cart, increase the quantity
         cartItems[product].quantity += 1;
     } else {
-        // If product is not in the cart, add it with quantity 1
         cartItems[product] = {
             price: price,
             quantity: 1
