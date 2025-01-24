@@ -277,6 +277,22 @@ button i {
     justify-content: space-around;
 }
 
+.modal-add-to-cart{
+    background-color: green;
+    color: #fff;
+}
+.modal-add-to-cart:hover {
+    background-color: rgb(3, 165, 3);
+}
+
+.modal-close{
+    background-color: red;
+    color: #fff;
+}
+.modal-close:hover {
+    background-color: rgb(165, 3, 3);
+}
+
 @media (max-width: 480px) {
     .product {
         padding: 5px;

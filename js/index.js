@@ -6,7 +6,7 @@ let cartItems = {};
 
 document.addEventListener('DOMContentLoaded', (event) => {
     loadCart();
-    
+
     const gridContainer = document.getElementById("productGrid");
 
     productsDetails.forEach((product) => {
@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const productName = product.name;
         const productImages = product.image;
         const productDescription = product.description;
-        const productPrice = product.price.replace('GH₵', '');
+        const productPrice = parseFloat(product.price.replace(/,/g, ''));
 
         productElement.innerHTML = `
             <img src="${productImages[0]}">
             <h2>${productName}</h2>
             <p>${productDescription}</p>
-            <h4>GH₵${productPrice}</h4>
+            <h4>GH₵${productPrice.toFixed(2)}</h4>
             <div class="product-buttons">
                 <button class="addToCart-button" data-product-name="${productName}" data-product-price="${productPrice}">Add to Cart</button>
                 <button class="view-details" data-product-name="${productName}">View More Details</button>
@@ -43,9 +43,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     document.getElementById('searchBar').addEventListener('input', filterProducts);
-
-    document.getElementById('modal-overlay').onclick = closeModal;
-    
+    document.getElementById('modal-overlay').addEventListener('click', closeModal);
+    document.getElementById('popup').addEventListener('click', closePopup);
+    document.getElementById('removeAllButton').addEventListener('click', removeAll);
+    document.querySelector('.cart').addEventListener('click', toggleCart);
 });
 
 function addToCart(product, price) {
@@ -88,7 +89,7 @@ function updateCart() {
         const listItem = document.createElement('li');
         const item = cartItems[product];
 
-        listItem.textContent = `${product} - ${item.price} x ${item.quantity}`;
+        listItem.textContent = `${product} - GH₵${item.price.toFixed(2)} x ${item.quantity}`;
         
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
@@ -136,20 +137,21 @@ function loadCart() {
     if (savedCartItems) {
         cartItems = savedCartItems;
 
-        total = parseFloat(localStorage.getItem('cartTotal'));
-        cartCount = parseInt(localStorage.getItem('cartCount'));
+        total = parseFloat(localStorage.getItem('cartTotal')) || 0;
+        cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
         updateCart();
     }
 }
 
-
 function removeAll() {
-    console.log("Remove All button clicked"); // Debugging line
     cartItems = {};
-    total = 0;
+    total = 0; 
     cartCount = 0;
     updateCart();
-    saveCart();
+    localStorage.setItem('cartItems', JSON.stringify({}));
+    localStorage.setItem('cartTotal', 0);
+    localStorage.setItem('cartCount', 0);
+    console.log("Cart cleared successfully.");
 }
 
 function filterProducts() { 
@@ -173,7 +175,7 @@ var modalOverlay = document.getElementById("modal-overlay");
 function showModal(productName, productDescription, productPrice, productImages) {
     document.getElementById("modal-title").innerText = productName;
     document.getElementById("modal-description").innerText = productDescription;
-    document.getElementById("modal-price").innerText = "GH₵" + productPrice;
+    document.getElementById("modal-price").innerText = "GH₵" + parseFloat(productPrice.replace(/,/g, '')).toFixed(2);
 
     var modalImagesDiv = document.getElementById("modal-images");
     modalImagesDiv.innerHTML = `
@@ -208,8 +210,8 @@ function changeSlide(n) {
 
 function showSlides(n) {
     var slides = document.getElementsByClassName("slide");
-    if (n >= slides.length) { slideIndex = 0 }
-    if (n < 0) { slideIndex = slides.length - 1 }
+    if (n >= slides.length) { slideIndex = 0; }
+    if (n < 0) { slideIndex = slides.length - 1; }
     for (var i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
@@ -217,5 +219,4 @@ function showSlides(n) {
 }
 
 modalOverlay.onclick = closeModal;
-
 document.getElementById('popup').onclick = closePopup;
