@@ -1,39 +1,51 @@
-//import {products} from "./index_array";
-
-
-/*
-let customerProducts = JSON.parse(localStorage.getItem("customerProducts")) || []
-
-var gridContainer = document.getElementById('grid_container');
-console.log(gridContainer); // Check if gridContainer is correctly selected
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed');
-    productImages.forEach(product => {
-        console.log(`Adding product: ${product.name}`);
-        gridContainer.innerHTML += `<div class="card">
-                <img class="card_image" src="${product.image}" alt="${product.name}">
-                <h2>${product.name}</h2>
-                <p>${product.description}</p>
-                <h4>${product.price}</h4>
-                <button id="AddProduct${product.id}"  class="card_button">Add to Cart</button>
-            </div>`;
-    });
-});
-
-
-*/
-
-
-
-//NEW LINE OF CODES
+import { productsDetails } from '../js/index_array.js';
 
 let total = 0;
 let cartCount = 0;
-let cartItems = {}; // Use an object to store cart items by product name
+let cartItems = {};
 
 document.addEventListener('DOMContentLoaded', (event) => {
     loadCart();
+    
+    const gridContainer = document.getElementById("productGrid");
+
+    productsDetails.forEach((product) => {
+        const productElement = document.createElement("div");
+        productElement.className = "product";
+        const productName = product.name;
+        const productImages = product.image;
+        const productDescription = product.description;
+        const productPrice = product.price.replace('GH₵', '');
+
+        productElement.innerHTML = `
+            <img src="${productImages[0]}">
+            <h2>${productName}</h2>
+            <p>${productDescription}</p>
+            <h4>GH₵${productPrice}</h4>
+            <div class="product-buttons">
+                <button class="addToCart-button" data-product-name="${productName}" data-product-price="${productPrice}">Add to Cart</button>
+                <button class="view-details" data-product-name="${productName}">View More Details</button>
+            </div>
+        `;
+        gridContainer.appendChild(productElement);
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('addToCart-button')) {
+            const productName = event.target.getAttribute('data-product-name');
+            const productPrice = parseFloat(event.target.getAttribute('data-product-price'));
+            addToCart(productName, productPrice);
+        } else if (event.target.classList.contains('view-details')) {
+            const productName = event.target.getAttribute('data-product-name');
+            const product = productsDetails.find(p => p.name === productName);
+            showModal(product.name, product.description, product.price, product.image);
+        }
+    });
+
+    document.getElementById('searchBar').addEventListener('input', filterProducts);
+
+    document.getElementById('modal-overlay').onclick = closeModal;
+    
 });
 
 function addToCart(product, price) {
@@ -56,6 +68,8 @@ function showPopup(product) {
     const popupMessage = document.getElementById('popupMessage');
     popupMessage.textContent = `${product} successfully added to the cart!`;
     popup.style.display = 'block';
+
+    document.getElementById('popup').onclick = closePopup;
 }
 
 function closePopup() {
@@ -74,7 +88,7 @@ function updateCart() {
         const listItem = document.createElement('li');
         const item = cartItems[product];
 
-        listItem.textContent = `${product} - GH₵${item.price} x ${item.quantity}`;
+        listItem.textContent = `${product} - ${item.price} x ${item.quantity}`;
         
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
@@ -106,8 +120,10 @@ function removeFromCart(product) {
 
 function toggleCart() {
     const cartPane = document.getElementById('cart-pane');
-    cartPane.style.display = cartPane.style.display === 'block' ? 'none' : 'block';
+    cartPane.classList.toggle('open');
 }
+
+document.querySelector('.cart').addEventListener('click', toggleCart);
 
 function saveCart() {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -126,7 +142,9 @@ function loadCart() {
     }
 }
 
+
 function removeAll() {
+    console.log("Remove All button clicked"); // Debugging line
     cartItems = {};
     total = 0;
     cartCount = 0;
@@ -134,8 +152,6 @@ function removeAll() {
     saveCart();
 }
 
-
-// Filter search bar for products
 function filterProducts() { 
     const searchBar = document.getElementById('searchBar'); 
     const filter = searchBar.value.toLowerCase(); 
@@ -149,75 +165,57 @@ function filterProducts() {
             product.style.display = 'none'; 
         } 
     });
-};
+}
 
-
-
-
- // Get the modal elements
 var modal = document.getElementById("product-modal");
 var modalOverlay = document.getElementById("modal-overlay");
-var slideIndex = 0;
 
-    // Function to show modal with product details
-    function showModal(productName, productDescription, productPrice, productImages) {
-    // Populate modal content
+function showModal(productName, productDescription, productPrice, productImages) {
     document.getElementById("modal-title").innerText = productName;
     document.getElementById("modal-description").innerText = productDescription;
     document.getElementById("modal-price").innerText = "GH₵" + productPrice;
 
-    // Clear existing images
     var modalImagesDiv = document.getElementById("modal-images");
-    modalImagesDiv.innerHTML = "";
+    modalImagesDiv.innerHTML = `
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <div class="slides-container"></div>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    `;
 
-    // Add product images to modal
+    var slidesContainer = modalImagesDiv.querySelector('.slides-container');
     productImages.forEach(image => {
         var imgElement = document.createElement("img");
         imgElement.src = image;
-        modalImagesDiv.appendChild(imgElement);
+        imgElement.className = 'slide';
+        slidesContainer.appendChild(imgElement);
     });
 
-    // Display modal and overlay
+    showSlides(slideIndex);
+
     modal.style.display = "block";
     modalOverlay.style.display = "block";
-    }
+}
 
-    // Function to close modal
-    function closeModal() {
+function closeModal() {
     modal.style.display = "none";
     modalOverlay.style.display = "none";
+}
+
+var slideIndex = 0;
+function changeSlide(n) {
+    showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+    var slides = document.getElementsByClassName("slide");
+    if (n >= slides.length) { slideIndex = 0 }
+    if (n < 0) { slideIndex = slides.length - 1 }
+    for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
+    slides[slideIndex].style.display = "block";
+}
 
-    // Function to change slide 
-    function changeSlide(n) { 
-        var slides = document.getElementsByClassName("slide"); slideIndex += n; 
-        if (slideIndex >= slides.length) { 
-            slideIndex = 0; 
-        } 
-        if (slideIndex < 0) { 
-            slideIndex = slides.length - 1; 
-        } 
-        for (var i = 0; i < slides.length; i++) { 
-            slides[i].style.display = "none"; 
-        } 
-        slides[slideIndex].style.display = "block"; 
-    }
+modalOverlay.onclick = closeModal;
 
-    // Attach event listeners to "View More Details" buttons
-    document.querySelectorAll('.view-details').forEach(button => {
-    button.addEventListener('click', function () {
-        var product = this.closest('.product');
-        var productName = product.getAttribute('data-name');
-        var productDescription = product.getAttribute('data-description');
-        var productPrice = product.getAttribute('data-price');
-        var productImages = JSON.parse(product.getAttribute('data-image'));
-
-        showModal(productName, productDescription, productPrice, productImages);
-    });
-    });
-
-    // Close modal when clicking outside of it
-    modalOverlay.onclick = closeModal;
-
-
-
+document.getElementById('popup').onclick = closePopup;

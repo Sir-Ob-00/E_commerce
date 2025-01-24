@@ -44,6 +44,13 @@ nav h1 {
     border: 1px solid #ccc;
     width: 300px;
     padding: 10px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+}
+
+.cart-pane.open {
+    display: block;
+    transform: translateX(0);
 }
 
 .cart-pane h2, .cart-pane h3 {
@@ -84,6 +91,9 @@ nav h1 {
 .product {
     margin-bottom: 15px;
 }
+.product h4{
+    color: rgb(101, 101, 231);
+}
 
 button {
     padding: 5px 10px;
@@ -94,8 +104,34 @@ button {
     align-items: center;
 }
 
-button:hover {
-    background-color: #ced6d0;
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #666;
+}
+
+
+button:focus, .cart:focus {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
+}
+
+
+.addToCart-button{
+    background-color: #fb4b06;
+    color: #fff;
+}
+
+.addToCart-button:hover {
+    background-color: #cd3d05;
+}
+
+.view-details{
+    background-color: #f47126;
+    color: #fff;
+}
+.view-details:hover {
+    background-color: #d95f1f;
 }
 
 button i {
@@ -138,7 +174,7 @@ button i {
     transition: transform 300ms, box-shadow 300ms; 
     cursor: pointer;
 } 
-.card:hover { 
+.product:hover { 
     transform: scale(1.05); 
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); 
 } 
@@ -183,6 +219,24 @@ button i {
     color: #fff;
 }
 
+.cart-pane h2, .cart-pane h3, .popup p {
+    line-height: 1.5;
+}
+
+.loader {
+    width: 100%;
+    height: 12rem;
+    background: #f0f0f0;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { background-color: #f0f0f0; }
+    50% { background-color: #e0e0e0; }
+    100% { background-color: #f0f0f0; }
+}
+
+
 .modal { display: none; 
     position: fixed; 
     top: 50%; 
@@ -193,7 +247,10 @@ button i {
     border: 1px solid #ddd; 
     box-shadow: 0 0 10px rgba(0,0,0,0.1); 
     z-index: 1000; 
-} 
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
 .modal img { 
     width: 200px; 
     height: 200px; 
@@ -218,6 +275,16 @@ button i {
 .modal-buttons{
     display: flex;
     justify-content: space-around;
+}
+
+@media (max-width: 480px) {
+    .product {
+        padding: 5px;
+    }
+    .cart-pane {
+        width: 80%;
+        padding: 5px;
+    }
 }
 
 .slider { 
