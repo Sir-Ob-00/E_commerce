@@ -21,14 +21,15 @@
             <li><a href="#about">About Us</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="cartIcon" onclick="toggleCart()">
+        <div class="cart" id="cart-icon">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count">0</span>
         </div>
     </nav>
 
     <!--Cart pane-->
-    <div class="cart-pane" id="cart-pane">
+    <div class="cart-pane active" id="cart-pane">
+        <button id="close_pane">X</button>
         <h2>Cart</h2>
         <ul id="cart"></ul>
         <h3>Total: GH₵<span id="total">0</span></h3>
@@ -123,32 +124,7 @@
     </main>
 
 
-    <!--Pop up-->
-    <div class="popup" id="popup"> 
-        <div class="checkmark">✔</div> 
-        <p id="popupMessage"></p> 
-        <button onclick="closePopup()">Close</button> 
-    </div>
-
-    <!-- Modal --> 
-    <div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div> 
-    <div class="modal" id="product-modal"> 
-        <div class="modal-content"> 
-            <div id="modal-images" class="slider">
-                <button class="prev" onclick="changeSlide(-1)">&#10094;</button> 
-                <div class="slides-container"></div> 
-                <button class="next" onclick="changeSlide(1)">&#10095;</button>
-            </div> 
-            <h2 id="modal-title"></h2> 
-            <p id="modal-description"></p> 
-            <h4 id="modal-price"></h4> 
-            <div class="modal-buttons">
-                <button class="modal-add-to-cart" onclick="addToCart()" id="modal-add-to-cart">Add to Cart</button>
-                <button class="modal-close" onclick="closeModal()">Close</button> 
-            </div>
-        </div> 
-    </div>
-
+    
 
     <footer class="footer">
         <div class="footer-content">

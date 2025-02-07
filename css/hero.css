@@ -72,12 +72,12 @@
 }
 
 
-.cartIcon {
+.cart {
     position: relative;
     cursor: pointer;
 }
 
-.cartIcon i {
+.cart i {
     font-size: 25px;
 }
 
