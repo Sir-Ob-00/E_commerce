@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musical Keyboard</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="new.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1 class="logo">Home</h1>
+        </div>
+        <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#product">Products</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="#" id="cartIcon" class="cart-icon">
+                <img src="/images/icon-cart.svg" alt="Cart" width="24" height="24">
+            </a>
+            <span id="cartCount">0</span> <!-- Cart count -->
+        </div>
+    </nav>
+
+    <!-- Cart Pane -->
+    <div id="cartPane" class="cart-pane">
+        <h3>Your Cart</h3>
+        <ul id="cartItemsList"></ul>
+        <div id="cartTotal">
+            <h4>Total: GH₵<span id="cartTotalPrice">0.00</span></h4>
+        </div>
+        <button id="checkoutBtn">Checkout</button>
+        <button id="closeCartBtn">Close</button>
+    </div>
+
+    <main>
+        <div class="title-text">
+            <h2>MUSICAL KEYBOARD</h2>
+            <input class="input-search" type="text" id="searchBar" placeholder="Search products..." onkeyup="filterProducts()">
+        </div>
+
+        <div class="grid_container" id="productGrid"></div>
+    </main>
+
+    <script type="module" src="new.js"></script>
+</body>
+</html>

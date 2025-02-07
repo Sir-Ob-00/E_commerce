@@ -5,18 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/hero.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <h1>Home</h1>
-        <div class="cart" onclick="toggleCart()">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1 class="logo">OBShop!</h1>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="cartIcon" onclick="toggleCart()">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count">0</span>
         </div>
     </nav>
 
+    <!--Cart pane-->
+    <div class="cart-pane" id="cart-pane">
+        <h2>Cart</h2>
+        <ul id="cart"></ul>
+        <h3>Total: GH₵<span id="total">0</span></h3>
+        <p id="empty-cart-message">No item is added to cart.</p>
+    </div>
 
+            <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!--Left Section: Brand List-->
+            <div class="hero-left">
+                <h3>Choose a Brand</h3>
+                <ul class="brand-list">
+                    <li><a href="#">Yamaha</a></li>
+                    <li><a href="#">Korg</a></li>
+                    <li><a href="#">Roland</a></li>
+                    <li><a href="#">Casio</a></li>
+                    <li><a href="#">Nord</a></li>
+                </ul>
+            </div>
+            <div class="hero-slider">
+                <!-- Slider Images -->
+                <input type="radio" name="slider" id="slide1" checked>
+                <input type="radio" name="slider" id="slide2">
+                <input type="radio" name="slider" id="slide3">
+                <input type="radio" name="slider" id="slide4">
+                <input type="radio" name="slider" id="slide5">
+
+                <div class="slider-wrapper">
+                    <div class="slide">
+                        <img src="/images/yam motif fx8.jpeg" alt="Roland Jupiter">
+                        <p class="image-description">Yamaha Montage 6 - Flagship synthesizer with dynamic control and powerful sound engine.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="/images/prof korg.jpg" alt="Casio CT-X700">
+                        <p class="image-description">Korg Professional Keyboard - High-performance keyboard for professional musicians.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="/images/yamaha montage 6.jpg" alt="Yamaha Montage 6">
+                        <p class="image-description">Roland Jupiter - Iconic synthesizer with rich sound and advanced features.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="/images/casio-ct-x700-1024x406.jpg" alt="Korg Professional Keyboard">
+                        <p class="image-description">Casio CT-X700 - Portable keyboard with excellent sound quality and versatile features.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="/images/nord stage 4.jpg" alt="Yamaha Genos 2">
+                        <p class="image-description">Nord Stage 4 88-Key Fully-Weighted Keyboard Bundle with Soft Case.</p>
+                    </div>                
+                </div>
+
+                <!-- Slider Navigation -->
+                <div class="slider-nav">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                    <label for="slide4"></label>
+                    <label for="slide5"></label>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-option">
+                    <i class="fas fa-store-alt"></i>
+                    <span>Call to order</span>
+                </div>
+                <div class="hero-option">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Sell on OBShop</span>
+                </div>
+                <div class="hero-option">
+                    <i class="fas fa-truck"></i>
+                    <span>Track your order</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+
+    
+    
+    <!-- Products Section -->
     <main>
         <div class="title-text">
             <h2>MUSICAL KEYBOARD</h2>
@@ -26,13 +122,6 @@
         <div class="grid_container" id="productGrid"></div>
     </main>
 
-    <!--Cart pane-->
-    <div class="cart-pane" id="cart-pane">
-        <h2>Cart</h2>
-        <ul id="cart"></ul>
-        <h3>Total: GH₵<span id="total">0</span></h3>
-        <button class="removeAll" onclick="removeAll()">Remove All</button>
-    </div>
 
     <!--Pop up-->
     <div class="popup" id="popup"> 
@@ -61,6 +150,19 @@
     </div>
 
 
-    <script type="module" src="/js/index.js"></script>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 OBSHop. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+    <script type="module" src="/js/data.js"></script>
+    <script src="/js/hero.js"></script>
 </body>
 </html>
