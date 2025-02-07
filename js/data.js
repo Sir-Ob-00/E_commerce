@@ -56,9 +56,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Event listeners for search and modal/popup
     document.getElementById('searchBar').addEventListener('input', filterProducts);
-    // document.getElementById('modal-overlay').addEventListener('click', closeModal);
-    // document.getElementById('popup').addEventListener('click', closePopup);
-    // document.querySelector('.cart').addEventListener('click', toggleCart);
 });
 
 // Function to add items to the cart

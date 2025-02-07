@@ -1,7 +1,9 @@
 
 :root {
-    --primary-color: #0056b3;
-    --secondary-color: #fb4b06;
+    --primary-color: #2d9502;
+    --primary-hover: #13610b;
+    --secondary-color: #ffd60a;
+    --secondary-hover: #eda905;
     --font-family: 'Arial, sans-serif';
 }
 
@@ -12,7 +14,7 @@ body {
 
 
 .product h4{
-    color: rgb(101, 101, 231);
+    color: var(--primary-color);
 }
 
 button {
@@ -38,20 +40,20 @@ button:focus, .cart:focus {
 
 
 .addToCart-button{
-    background-color: var(--secondary-color);
+    background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
     color: #fff;
 }
 
 .addToCart-button:hover {
-    background-color: #cd3d05;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .view-details{
-    background-color: #f47126;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: #000;
 }
 .view-details:hover {
-    background-color: #d95f1f;
+    background-color: var(--secondary-hover);
 }
 
 button i {
@@ -186,7 +188,7 @@ button i {
 }
 
 .quantity-controls button {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     padding: 0.5rem;
@@ -195,7 +197,7 @@ button i {
 }
 
 .quantity-controls button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover);
 }
 
 .remove-item {
@@ -212,53 +214,149 @@ button i {
     font-size: 1rem;
 }
 
-.loader {
-    width: 100%;
-    height: 12rem;
-    background: #f0f0f0;
-    animation: pulse 1.5s infinite;
-}
 
-@keyframes pulse {
-    0% { background-color: #f0f0f0; }
-    50% { background-color: #e0e0e0; }
-    100% { background-color: #f0f0f0; }
-}
-
-
-/* Footer */
+/* Footer Styling */
 .footer {
-    background-color: #bec1c3;
-    padding: 1rem 2rem;
+    background: linear-gradient(to right, var(--secondary-color), var(--secondary-hover));
+    padding: 40px 20px;
     text-align: center;
 }
 
-.footer-content {
+.container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.footer-content p{
-    font-size: 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.footer-links {
+.footer-section {
+    width: 30%;
+    min-width: 250px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: var(--primary-hover);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: white;
+}
+
+/* Newsletter */
+.newsletter {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.newsletter form {
+    margin-top: 10px;
     display: flex;
-    gap: 1rem;
-    margin-top: 0.5rem;
     justify-content: center;
 }
 
-.footer-links a {
-    color: #007BFF;
-    font-size: 20px;
+.newsletter input {
+    padding: 10px;
+    width: 250px;
+    border: none;
+    border-radius: 4px 0 0 4px;
 }
 
-.footer-links a:hover {
-    text-decoration: underline;
+.newsletter button {
+    padding: 10px 15px;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    transition: background 0.3s ease;
 }
+
+.newsletter button:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Copyright */
+.copyright {
+    margin-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+}
+
 
 @keyframes pulse {
     0%, 100% { background-color: #f0f0f0; }
     50% { background-color: #e0e0e0; }
+}
+
+
+/* Brand Slider Styling */
+.brand-slider {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    padding: 20px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Track for logos */
+.brand-track {
+    display: flex;
+    width: 200%; /* Large enough for smooth looping */
+    animation: scroll 10s linear infinite;
+}
+
+/* Individual logos */
+.brand-track img {
+    width: 150px; /* Adjust size */
+    height: auto;
+    margin: 0 20px;
+}
+
+/* Keyframes for scrolling effect */
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
 }

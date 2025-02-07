@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #007BFF;
+    background-color: var(--primary-hover);
     color: white;
     position: relative;
 }
@@ -32,7 +32,7 @@
 }
 
 .nav-links a:hover {
-    background-color: #0056b3;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Hamburger Menu */
@@ -54,7 +54,7 @@
         top: 60px;
         left: 0;
         width: 100%;
-        background-color: #007BFF;
+        background-color: var(--primary-color);
         padding: 1rem 0;
     }
 
@@ -91,20 +91,6 @@
     padding: 0.2rem 0.4rem;
     border-radius: 50%;
 }
-
-/* Empty cart message */
-#empty-cart-message {
-    display: none;
-    text-align: center;
-    color: gray;
-    font-size: 16px;
-    margin-top: 20px;
-}
-
-.cart-pane.active #empty-cart-message {
-    display: block;
-}
-
 
 .cart-pane {
     display: none;
@@ -214,7 +200,7 @@
 }
 
 .brand-list li:hover {
-    color: #007bff;
+    color: var(--primary-color);
     text-decoration: underline;
 }
 
@@ -247,11 +233,11 @@
 .image-description {
     text-align: center;
     font-size: 30px;
-    color: #fff;
-    background-color: rgba(4, 108, 254, 0.667);
+    color: #000;
+    background-color: var(--secondary-color);
     padding: 10px;
     border-radius: 5px;
-    margin-bottom: 10px; /* Add margin to separate the description from the image */
+    margin-bottom: 10px; 
 }
 
 .slide img {
@@ -277,7 +263,7 @@
 }
 
 .slider-nav label.active {
-    background-color: #007bff; /* Change this color to whatever you prefer */
+    background-color: #007bff; 
 }
 
 input[type="radio"] {
@@ -329,7 +315,7 @@ input[type="radio"]:checked + .slider-wrapper {
 
 .hero-option i {
     margin-right: 10px;
-    color: #007BFF;
+    color: var(--primary-color);
 }
 
 /* Responsive Styles */
@@ -366,7 +352,7 @@ input[type="radio"]:checked + .slider-wrapper {
     z-index: 99;
     border: none;
     outline: none;
-    background-color: #007BFF;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
     color: white;
     cursor: pointer;
     padding: 15px;
@@ -376,10 +362,13 @@ input[type="radio"]:checked + .slider-wrapper {
 }
 
 #back-to-top:hover {
-    background-color: #555;
+    transform: scaleX(1.05) ease;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
 }
+
+
