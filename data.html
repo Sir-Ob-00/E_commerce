@@ -5,25 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="/css/data.css">
-    <link rel="stylesheet" href="/css/hero.css">    
+    <link rel="stylesheet" href="/css/hero.css">
+     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <h1 class="logo">OBShop!</h1>
-        <div class="hamburger" onclick="toggleMenu()">
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu" role="button" tabindex="0">
             <i class="fas fa-bars"></i>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="data.html" aria-label="Go to Home Page">Home</a></li>
+            <li><a href="products.html" aria-label="Browse Products">Products</a></li>
+            <li><a href="about.html" aria-label="Learn About Us">About Us</a></li>
+            <li><a href="contact.html" aria-label="Contact Us">Contact</a></li>
         </ul>
-        <div class="cart" id="cart-icon">
+        <div class="cart" id="cart-icon" role="button" aria-label="Shopping Cart" tabindex="0">
             <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count">0</span>
+            <span class="cart-count" aria-live="polite">0</span>
         </div>
     </nav>
 
@@ -35,6 +36,12 @@
         <h3>Total: GH₵<span id="total">0</span></h3>
     </div>
 
+    <!--Page Title/Search bar-->
+    <div class="title-text">
+        <h2>MUSICAL KEYBOARD</h2>
+        <label for="searchBar">Search Products:</label>
+        <input class="input-search" type="text" id="searchBar" placeholder="Search products..." onkeyup="filterProducts()">
+    </div>
             <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -92,7 +99,7 @@
             <div class="hero-right">
                 <div class="hero-option">
                     <i class="fas fa-store-alt"></i>
-                    <span>Call to order</span>
+                    <a href="order.html"><span>Call to order</span></a>
                 </div>
                 <div class="hero-option">
                     <i class="fas fa-phone-alt"></i>
@@ -109,47 +116,67 @@
     <!--Back-to-top button-->
     <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
+    <!-- Alert -->
+    <!-- Toast notification HTML --> 
+  <div id="toast" class="toast">Item added to cart</div>
     
     
     <!-- Products Section -->
     <main>
-        <div class="title-text">
-            <h2>MUSICAL KEYBOARD</h2>
-            <input class="input-search" type="text" id="searchBar" placeholder="Search products..." onkeyup="filterProducts()">
+        <div class="yamaha-text">
+            <h1>YAMAHA KEYBOARD</h1>
         </div>
-
         <div class="grid_container" id="productGrid"></div>
     </main>
 
-
-    <!-- Brand Logos Section -->
-<div class="brand-slider">
-    <div class="brand-track">
-        <img src="/logos/Yamaha.png" alt="Yamaha Logo">
-        <img src="/logos/Korg.png" alt="Korg Logo">
-        <img src="/logos/Roland.png" alt="Roland Logo">
-        <img src="/logos/casio.png" alt="Casio Logo">
-        <img src="/logos/nord-vector-logo.svg" alt="Nord Logo">
         
-        <!-- Duplicate logos for a smooth infinite loop -->
-        <img src="/logos/Yamaha.png" alt="Yamaha Logo">
-        <img src="/logos/Korg.png" alt="Korg Logo">
-        <img src="/logos/Roland.png" alt="Roland Logo">
-        <img src="/logos/casio.png" alt="Casio Logo">
-        <img src="/logos/nord-vector-logo.svg" alt="Nord Logo">
+    <!-- Modal -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" aria-describedby="modal-product-description">
+    <div class="modal-content">
+        <span class="close" id="close-modal">&times;</span>
+        <div class="modal-left">
+            <img id="main-image" src="" alt="Product Image">
+        </div>
+        <div class="modal-right">
+            <h2 id="modal-product-name"></h2>
+            <p id="modal-product-description"></p>
+            <h4 id="modal-product-price"></h4>
+            <!-- Add to Cart button -->
+            <button id="modal-add-to-cart" class="addToCart-button">Add to Cart</button>
+        </div>
     </div>
 </div>
 
+
+
+
+        <!-- Brand Logos Section -->
+    <div class="brand-slider">
+        <div class="brand-track">
+            <img src="/logos/Yamaha.png" alt="Yamaha Logo">
+            <img src="/logos/Korg.png" alt="Korg Logo">
+            <img src="/logos/Roland.png" alt="Roland Logo">
+            <img src="/logos/casio.png" alt="Casio Logo">
+            <img src="/logos/nord-vector-logo.svg" alt="Nord Logo">
+            
+            <!-- Duplicate logos for a smooth infinite loop -->
+            <img src="/logos/Yamaha.png" alt="Yamaha Logo">
+            <img src="/logos/Korg.png" alt="Korg Logo">
+            <img src="/logos/Roland.png" alt="Roland Logo">
+            <img src="/logos/casio.png" alt="Casio Logo">
+            <img src="/logos/nord-vector-logo.svg" alt="Nord Logo">
+        </div>
+    </div>
 
 
     <!--Footer section-->
     <footer class="footer">
         <div class="container">
             <div class="footer-section">
-                <h3>OBSHop!</h3>
+                <h3>OBShop!</h3>
                 <p>Your one-stop shop for quality Musical Keyboards. We provide the best services and offers for our valued customers.</p>
             </div>
-    
+
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
@@ -159,29 +186,38 @@
                     <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
-    
+
             <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: owusuboat05@gmail.com</p>
-                <p>Phone: +233 (24) 089-7702</p>
+                <h3>Payment Methods</h3>
+                <div class="payment-icons">
+                    <img src="/logos/money-back-guarantee.png" alt="Payment on Delivery" title="Payment on Delivery">
+                    <img src="/logos/visa.png" alt="Visa" title="Visa">
+                    <img src="/logos/round.png" alt="MasterCard" title="MasterCard">
+                    <img src="/logos/mtn momo.png" alt="Mobile Money" title="Mobile Money">
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Follow Us</h3>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
-    
+
         <div class="newsletter">
             <h3>Subscribe to Our Newsletter</h3>
             <form>
-                <input type="email" placeholder="Enter your email">
-                <button type="submit">Subscribe</button>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true">
+                <button type="submit" aria-label="Subscribe to our newsletter">Subscribe</button>
             </form>
         </div>
-    
+
         <div class="copyright">
-            <p>&copy; 2025 OBSHop. All rights reserved.</p>
+            <p>&copy; 2025 OBShop. All rights reserved.</p>
         </div>
     </footer>
     

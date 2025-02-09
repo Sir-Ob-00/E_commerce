@@ -1,9 +1,9 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     let currentSlide = 1;
     const totalSlides = 5;
     const sliderWrapper = document.querySelector('.slider-wrapper');
-
+    const radioButtons = document.querySelectorAll('.slider-nav label');
+    
     function showSlide(index) {
         sliderWrapper.style.transform = `translateX(calc(-100% * ${index - 1}))`;
         updateActiveRadioButton(index);
@@ -14,53 +14,61 @@ document.addEventListener('DOMContentLoaded', () => {
         showSlide(currentSlide);
     }
 
-    // Change slides automatically every 5 seconds
-    setInterval(nextSlide, 5000);
+    // Auto-slide every 5 seconds
+    const slideInterval = setInterval(nextSlide, 5000);
 
     // Handle radio button navigation
-    document.querySelectorAll('.slider-nav label').forEach((label, index) => {
+    radioButtons.forEach((label, index) => {
         label.addEventListener('click', () => {
             currentSlide = index + 1;
             showSlide(currentSlide);
+            clearInterval(slideInterval); // Stop auto-sliding when user interacts
         });
     });
 
     function updateActiveRadioButton(index) {
-        document.querySelectorAll('.slider-nav label').forEach((label, idx) => {
-            if (idx + 1 === index) {
-                label.classList.add('active');
-            } else {
-                label.classList.remove('active');
-            }
+        radioButtons.forEach((label, idx) => {
+            label.classList.toggle('active', idx + 1 === index);
         });
     }
 
-    // Initial call to update the active radio button on page load
+    // Initialize active radio button
     updateActiveRadioButton(currentSlide);
-});
 
-function toggleMenu() {
+    /*** Mobile Navigation Menu ***/
     const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-}
-
-
-// Get the button
-let backToTopButton = document.getElementById("back-to-top");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        backToTopButton.style.display = "block";
-    } else {
-        backToTopButton.style.display = "none";
+    const hamburger = document.querySelector('.hamburger');
+    
+    function toggleMenu() {
+        navLinks.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active'));
     }
-}
 
-// When the user clicks on the button, scroll to the top of the document
-backToTopButton.onclick = function() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
+    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            toggleMenu();
+        }
+    });
+
+    /*** Back to Top Button ***/
+    let backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    backToTopButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+});

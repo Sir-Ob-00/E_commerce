@@ -7,7 +7,7 @@ let cartItems = {};
 document.addEventListener('DOMContentLoaded', (event) => {
     loadCart();
     const gridContainer = document.getElementById("productGrid");
-    
+
     // Generate product elements
     productsDetails.forEach((product) => {
         const productElement = document.createElement("div");
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const productImage = event.target.getAttribute('data-product-image');
             const productDescription = event.target.getAttribute('data-product-description');
             addToCart(productName, productPrice, productImage, productDescription);
+            showToast();
         } else if (event.target.classList.contains('view-details')) {
             const productName = event.target.getAttribute('data-product-name');
             const product = productsDetails.find(p => p.name === productName);
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         } else if (event.target.classList.contains('remove-item')) {
             const productName = event.target.getAttribute('data-product-name');
             removeFromCart(productName);
+            // showToast();
         } else if (event.target.classList.contains('increment')) {
             const productName = event.target.getAttribute('data-product-name');
             incrementQuantity(productName);
@@ -56,6 +58,34 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Event listeners for search and modal/popup
     document.getElementById('searchBar').addEventListener('input', filterProducts);
+
+    // Event listener for modal close
+    document.getElementById('close-modal').addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    // Event listener for modal "Add to Cart" button
+    document.getElementById('modal-add-to-cart').addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    // Function to show the modal with product details
+    function showModal(name, description, price, images) {
+        const modal = document.getElementById('modal');
+        document.getElementById("modal-add-to-cart").setAttribute('data-product-name', name);
+        document.getElementById("modal-add-to-cart").setAttribute('data-product-price', price);
+        document.getElementById("modal-add-to-cart").setAttribute('data-product-image', images[0]);
+        document.getElementById("modal-add-to-cart").setAttribute('data-product-description', description);
+        document.getElementById('modal-product-name').textContent = name;
+        
+        document.getElementById('modal-product-description').textContent = description;
+        
+        document.getElementById('modal-product-price').textContent = `GH₵${parseFloat(price.replace(/,/g, '')).toFixed(2)}`;
+        
+        document.getElementById('main-image').src = images[0];
+        
+        modal.style.display = 'flex';
+    }
 });
 
 // Function to add items to the cart
@@ -68,8 +98,11 @@ function addToCart(productName, productPrice, productImage, productDescription) 
             description: productDescription
         };
         cartCount++;
+        showToast();
     } else {
         cartItems[productName].quantity++;
+        cartCount++;
+        showToast();
     }
     updateCart();
     saveCart();
@@ -118,7 +151,7 @@ function updateCart() {
                 <div class="cart-item-details">
                     <p>${productName}</p>
                     <p>${item.description}</p>
-                    <p>GH₵${item.price.toFixed(2)} x ${item.quantity}</p>
+                    <p>GH₵${parseFloat(String(item.price).replace(/,/g, '')).toFixed(2)} x ${item.quantity}</p>
                     <div class="quantity-controls">
                         <button class="decrement" data-product-name="${productName}">-</button>
                         <span>${item.quantity}</span>
@@ -149,31 +182,24 @@ function loadCart() {
     updateCart();
 }
 
-// Function to toggle the cart pane
-// function toggleCart() {
-//     console.log('toggleCart triggered'); // Debugging log
-//     const cartPane = document.getElementById('cart-pane');
-//     if (!cartPane) {
-//         console.error('Cart pane element not found');
-//         return;
-//     }
-//     cartPane.classList.toggle('active');
-// }
+// Function to show alert messages
+function showToast() { 
+    const toast = document.getElementById("toast"); 
+    toast.className = "toast show"; 
+    setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000); 
+}
 
-// close the cart pane
+// Close the cart pane
 document.getElementById("close_pane").addEventListener('click', () => {
-    const cart_pane = document.getElementById('cart-pane');
-    cart_pane.style.display = "none";
-})
-
+    const cartPane = document.getElementById('cart-pane');
+    cartPane.style.display = "none";
+});
 
 // Functionality for cart icon
-const cart_icon = document.getElementById('cart-icon');
-cart_icon.addEventListener('click', () => {
-    
-    const cart_pane = document.querySelector('.cart-pane.active');
-    cart_pane.style.display = "block";
-    
+const cartIcon = document.getElementById('cart-icon');
+cartIcon.addEventListener('click', () => {
+    const cartPane = document.querySelector('.cart-pane.active');
+    cartPane.style.display = "block";
 });
 
 // Function to filter products based on search input
