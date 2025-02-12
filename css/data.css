@@ -337,7 +337,7 @@ button i {
 
 /* Footer Styling */
 .footer {
-    background: linear-gradient(to right, var(--secondary-color), var(--secondary-hover));
+    background: var(--primary-hover);
     place-items: center;
     padding-bottom: 20px;
 }
@@ -356,7 +356,7 @@ button i {
 }
 
 .footer-section h3 {
-    color: #000;
+    color: var(--secondary-color);
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
