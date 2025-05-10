@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/css/data.css">
+    <link rel="stylesheet" href="/css/hero.css">
+    <link rel="stylesheet" href="/css/contact.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <h1 class="logo">OBShop!</h1>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu" role="button" tabindex="0">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="data.html" aria-label="Go to Home Page">Home</a></li>
+            <li><a href="data.html" aria-label="Browse Products">Products</a></li>
+            <li><a href="#" aria-label="Learn About Us">About Us</a></li>
+            <li><a href="contact.html" aria-label="Contact Us">Contact</a></li>
+        </ul>
+        <div class="cart" id="cart-icon" role="button" aria-label="Shopping Cart" tabindex="0">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" aria-live="polite">0</span>
+        </div>
+    </nav>
+
+    <!--Contact Us Section-->
+    <section class="contact-container">
+        <div class="contact-image">
+            <img src="/images/key image.JPG" alt="Get in Touch">
+        </div>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+
+
+    <!--Footer section-->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h3>OBShop!</h3>
+                <p>Your one-stop shop for quality Musical Keyboards. We provide the best services and offers for our valued customers.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Payment Methods</h3>
+                <div class="payment-icons">
+                    <img src="/logos/money-back-guarantee.png" alt="Payment on Delivery" title="Payment on Delivery">
+                    <img src="/logos/visa.png" alt="Visa" title="Visa">
+                    <img src="/logos/round.png" alt="MasterCard" title="MasterCard">
+                    <img src="/logos/mtn momo.png" alt="Mobile Money" title="Mobile Money">
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <form>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true">
+                <button type="submit" aria-label="Subscribe to our newsletter">Subscribe</button>
+            </form>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 OBShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/contact.js"></script>
+</body>
+</html>

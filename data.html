@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/css/data.css">
+    <link rel="stylesheet" href="/css/hero.css">
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <h1 class="logo">OBShop!</h1>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu" role="button" tabindex="0">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="data.html" aria-label="Go to Home Page">Home</a></li>
+            <li><a href="#" aria-label="Browse Products">Products</a></li>
+            <li><a href="#" aria-label="Learn About Us">About Us</a></li>
+            <li><a href="contact.html" aria-label="Contact Us">Contact</a></li>
+        </ul>
+        <div class="cart" id="cart-icon" role="button" aria-label="Shopping Cart" tabindex="0">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" aria-live="polite">0</span>
+        </div>
+    </nav>
+
+    <!--Cart pane-->
+    <div class="cart-pane active" id="cart-pane">
+        <button id="close_pane">X</button>
+        <h2>Cart</h2>
+        <ul id="cart"></ul>
+        <h3>Total: GH₵<span id="total">0</span></h3>
+    </div>
+
+    <!--Page Title/Search bar-->
+    <div class="title-text">
+        <h2>MUSICAL KEYBOARD</h2>
+        <label for="searchBar">Search Products:</label>
+        <input class="input-search" type="text" id="searchBar" placeholder="Search products..." onkeyup="filterProducts()">
+    </div>
+            <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!--Left Section: Brand List-->
+            <div class="hero-left">
+                <h3>Choose a Brand</h3>
+                <ul class="brand-list">
+                    <li><a href="#">Yamaha</a></li>
+                    <li><a href="#">Korg</a></li>
+                    <li><a href="#">Roland</a></li>
+                    <li><a href="#">Casio</a></li>
+                    <li><a href="#">Nord</a></li>
+                </ul>
+            </div>
+            <div class="hero-slider">
+                <!-- Slider Images -->
+                <input type="radio" name="slider" id="slide1" checked>
+                <input type="radio" name="slider" id="slide2">
+                <input type="radio" name="slider" id="slide3">
+                <input type="radio" name="slider" id="slide4">
+                <input type="radio" name="slider" id="slide5">
+
+                <div class="slider-wrapper">
+                    <div class="slide">
+                        <img src="/images/yam motif fx8.jpeg" alt="Roland Jupiter">
+                        <p class="image-description">Yamaha Montage 6 - Flagship synthesizer with dynamic control and powerful sound engine.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="/images/prof korg.jpg" alt="Casio CT-X700">
+                        <p class="image-description">Korg Professional Keyboard - High-performance keyboard for professional musicians.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="/images/yamaha montage 6.jpg" alt="Yamaha Montage 6">
+                        <p class="image-description">Roland Jupiter - Iconic synthesizer with rich sound and advanced features.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="/images/casio-ct-x700-1024x406.jpg" alt="Korg Professional Keyboard">
+                        <p class="image-description">Casio CT-X700 - Portable keyboard with excellent sound quality and versatile features.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="/images/nord stage 4.jpg" alt="Yamaha Genos 2">
+                        <p class="image-description">Nord Stage 4 88-Key Fully-Weighted Keyboard Bundle with Soft Case.</p>
+                    </div>                
+                </div>
+
+                <!-- Slider Navigation -->
+                <div class="slider-nav">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                    <label for="slide4"></label>
+                    <label for="slide5"></label>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-option">
+                    <i class="fas fa-store-alt"></i>
+                    <a href="order.html"><span>Call to order</span></a>
+                </div>
+                <div class="hero-option">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Sell on OBShop</span>
+                </div>
+                <div class="hero-option">
+                    <i class="fas fa-truck"></i>
+                    <span>Track your order</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Back-to-top button-->
+    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Alert -->
+    <!-- Toast notification HTML --> 
+  <div id="toast" class="toast">Item added to cart</div>
+    
+    
+    <!-- Products Section -->
+    <main>
+        <div class="yamaha-text">
+            <h1>YAMAHA KEYBOARD</h1>
+        </div>
+        <div class="grid_container" id="productGrid"></div>
+    </main>
+
+        
+    <!-- Modal -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" aria-describedby="modal-product-description">
+    <div class="modal-content">
+        <span class="close" id="close-modal">&times;</span>
+        <div class="modal-left">
+            <img id="main-image" src="" alt="Product Image">
+        </div>
+        <div class="modal-right">
+            <h2 id="modal-product-name"></h2>
+            <p id="modal-product-description"></p>
+            <h4 id="modal-product-price"></h4>
+            <!-- Add to Cart button -->
+            <button id="modal-add-to-cart" class="addToCart-button">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+        <!-- Brand Logos Section -->
+    <div class="brand-slider">
+        <div class="brand-track">
+            <img src="/logos/Yamaha.png" alt="Yamaha Logo">
+            <img src="/logos/Korg.png" alt="Korg Logo">
+            <img src="/logos/Roland.png" alt="Roland Logo">
+            <img src="/logos/casio.png" alt="Casio Logo">
+            <img src="/logos/nord-vector-logo.svg" alt="Nord Logo">
+            
+            <!-- Duplicate logos for a smooth infinite loop -->
+            <img src="/logos/Yamaha.png" alt="Yamaha Logo">
+            <img src="/logos/Korg.png" alt="Korg Logo">
+            <img src="/logos/Roland.png" alt="Roland Logo">
+            <img src="/logos/casio.png" alt="Casio Logo">
+            <img src="/logos/nord-vector-logo.svg" alt="Nord Logo">
+        </div>
+    </div>
+
+
+    <!--Footer section-->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h3>OBShop!</h3>
+                <p>Your one-stop shop for quality Musical Keyboards. We provide the best services and offers for our valued customers.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Payment Methods</h3>
+                <div class="payment-icons">
+                    <img src="/logos/money-back-guarantee.png" alt="Payment on Delivery" title="Payment on Delivery">
+                    <img src="/logos/visa.png" alt="Visa" title="Visa">
+                    <img src="/logos/round.png" alt="MasterCard" title="MasterCard">
+                    <img src="/logos/mtn momo.png" alt="Mobile Money" title="Mobile Money">
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <form>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true">
+                <button type="submit" aria-label="Subscribe to our newsletter">Subscribe</button>
+            </form>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 OBShop. All rights reserved.</p>
+        </div>
+    </footer>
+    
+
+
+    <script type="module" src="/js/data.js"></script>
+    <script src="/js/hero.js"></script>
+</body>
+</html>

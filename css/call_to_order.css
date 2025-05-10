@@ -1,0 +1,50 @@
+.call-to-order-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.call-to-order-card p {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.call-to-order-card h3{
+    text-transform: uppercase;
+    margin: 10px 0;
+    font-size: 40px;
+}
+.call-to-order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.call-to-order-card span {
+    font-weight: bold;
+    color: #4a4949;
+}
+.order_by{
+    color: var(--primary-color);
+}
+
+.phone_number{
+    font-size: 40px;
+    color: #4a4949;
+}
+@media (max-width: 768px) {
+    .call-to-order-card {
+        width: 90%;
+        margin: 10px;
+    }
+}
